@@ -19,12 +19,19 @@ import time
 import os
 import copy
 
+def easy_savefig(plt, outfpn):
+    outfp = os.path.splitext(outfpn)[0]
+    if not os.path.exists(outfp):
+        os.makedirs(outfp)
+    plt.savefig(outfpn)
+    plt.close()
+
 def get_git_root(path):
     git_repo = git.Repo(path, search_parent_directories=True)
     git_root = git_repo.git.rev_parse('--show-toplevel')
     return git_root
 
-def imshow(inp, title=None, savefig=False):
+def imshow(inp, title=None, outfpn=None):
     '''Imshow for Tensor.'''
     inp = inp.numpy().transpose((1, 2, 0))
     mean = np.array([0.485, 0.456, 0.406])
@@ -35,8 +42,8 @@ def imshow(inp, title=None, savefig=False):
     if title is not None:
         plt.title(title)
     plt.pause(0.001)  # pause a bit so that plots are updated
-    if savefig:
-        plt.savefig('img.png')
+    if outfpn:
+        easy_savefig(plt, outfpn)
 
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     '''A helper function to train a model.'''
@@ -109,7 +116,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     model.load_state_dict(best_model_wts)
     return model
 
-def visualize_model(model, num_images=6):
+def visualize_model(model, num_images=6, outfpn=None):
     was_training = model.training
     model.eval()
     images_so_far = 0
@@ -128,7 +135,7 @@ def visualize_model(model, num_images=6):
                 ax = plt.subplot(num_images//2, 2, images_so_far)
                 ax.axis('off')
                 ax.set_title('predicted: {}'.format(class_names[preds[j]]))
-                imshow(inputs.cpu().data[j])
+                imshow(inputs.cpu().data[j], outfpn=outfpn)
 
                 if images_so_far == num_images:
                     model.train(mode=was_training)
@@ -176,4 +183,29 @@ if __name__ == '__main__':
 
     # Number of images shown is determined by the batch_size argument
     # in the construction of Dataloader.
-    imshow(out, title=[class_names[x] for x in classes], savefig=True)
+    imshow(out, title=[class_names[x] for x in classes], outfpn='plots/preview_data.png')
+
+    ###
+    ### Finetuning the convnet
+    ###
+    model_ft = models.wide_resnet50_2(pretrained=True)
+    num_ftrs = model_ft.fc.in_features
+    # Here the size of each output sample is set to len(class_names).
+    model_ft.fc = nn.Linear(num_ftrs, len(class_names))
+
+    model_ft = model_ft.to(device)
+
+    criterion = nn.CrossEntropyLoss()
+
+    # Observe that all parameters are being optimized
+    optimizer_ft = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
+
+    # Decay LR by a factor of 0.1 every 7 epochs
+    exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
+
+    ###
+    ### Train and evaluate
+    ###
+    model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
+                           num_epochs=25)
+    visualize_model(model_ft, outfpn='plots/visualize_model.png')

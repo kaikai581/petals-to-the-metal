@@ -7,6 +7,7 @@
 # ref: https://stackoverflow.com/questions/22081209/find-the-root-of-the-git-repository-where-the-file-lives
 import git
 
+import argparse
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -138,8 +139,8 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     print('Best val Acc: {:4f}'.format(best_acc))
 
     # save training information
-    easy_savedataframe(epoch_losses['train'], 'epoch_info/train_epoch_info.csv')
-    easy_savedataframe(epoch_losses['val'], 'epoch_info/validation_epoch_info.csv')
+    easy_savedataframe(epoch_losses['train'], 'epoch_info/train_epoch_info_angle_limit_{}.csv'.format(angle_limit))
+    easy_savedataframe(epoch_losses['val'], 'epoch_info/validation_epoch_info_angle_limit_{}.csv'.format(angle_limit))
 
     # load best model weights
     model.load_state_dict(best_model_wts)
@@ -172,6 +173,11 @@ def visualize_model(model, num_images=6):
         model.train(mode=was_training)
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', '--angle_limit', help='Angle limit for random rotation', type=float, default=45.)
+    args = parser.parse_args()
+    angle_limit = args.angle_limit
+
     plt.ion()   # interactive mode
 
     # Data augmentation and normalization for training
@@ -179,6 +185,7 @@ if __name__ == '__main__':
     data_transforms = {
         'train': transforms.Compose([
             transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(angle_limit, expand=False),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ]),
@@ -213,7 +220,7 @@ if __name__ == '__main__':
     # Number of images shown is determined by the batch_size argument
     # in the construction of Dataloader.
     imshow(out, title=[class_names[x] for x in classes])
-    easy_savefig(plt, outfpn='plots/preview_data.png')
+    easy_savefig(plt, outfpn='plots/preview_data_angle_limit_{}.png'.format(angle_limit))
 
     ###
     ### Finetuning the convnet
@@ -225,7 +232,7 @@ if __name__ == '__main__':
     model_ft = model_ft.to(device)
 
     # if model is not trained, train it
-    model_fpn = 'models/wide_resnet_no_augmentation.pt'
+    model_fpn = 'models/wide_resnet_no_augmentation_angle_limit_{}.pt'.format(angle_limit)
     if not os.path.exists(model_fpn):
         criterion = nn.CrossEntropyLoss()
 
@@ -248,4 +255,4 @@ if __name__ == '__main__':
         model_ft.eval()
     # show some plots with prediction
     visualize_model(model_ft)
-    easy_savefig(plt, outfpn='plots/visualize_model.png')
+    easy_savefig(plt, outfpn='plots/visualize_model_angle_limit_{}.png'.format(angle_limit))

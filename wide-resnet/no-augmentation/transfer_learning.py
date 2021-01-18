@@ -1,8 +1,15 @@
 #!/usr/bin/env python
+'''
+This script trains a wide-resnet to classify flowers with transfer learning.
+No random rotation is done here.
+'''
 # License: MIT
 # Author: Shih-Kai Lin
 # Ref: https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
 
+import copy
+import os
+import time
 # library to retrieve root folder of git repo
 # ref: https://stackoverflow.com/questions/22081209/find-the-root-of-the-git-repository-where-the-file-lives
 import git
@@ -15,12 +22,9 @@ import numpy as np
 import torchvision
 from torchvision import datasets, models, transforms
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import time
-import os
 import pandas as pd
-import copy
+matplotlib.use('Agg')
 
 def easy_savedataframe(df, outfpn):
     outfp = os.path.dirname(outfpn)
@@ -120,7 +124,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                 phase, epoch_loss, epoch_acc))
-            
+
             # store the training information
             row = [epoch, epoch_loss, epoch_acc.item()]
             epoch_losses[phase].loc[len(epoch_losses[phase])] = row
@@ -146,10 +150,13 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     return model
 
 def visualize_model(model, num_images=6):
+    '''
+    Apply trained model to several figures in the validation sample.
+    '''
     was_training = model.training
     model.eval()
     images_so_far = 0
-    fig = plt.figure()
+    plt.figure()
 
     with torch.no_grad():
         for i, (inputs, labels) in enumerate(dataloaders['val']):

@@ -136,3 +136,7 @@ data/
 
 # model weights
 *.pt
+
+# some images
+preview_data.png
+visualize_model.png

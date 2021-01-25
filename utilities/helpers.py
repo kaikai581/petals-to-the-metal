@@ -91,7 +91,7 @@ def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epo
 
     # containers for training information
     df_fpns = {'train': 'epoch_info/train_epoch_info.csv', 'val': 'epoch_info/validation_epoch_info.csv'}
-    column_names = ['epoch', 'start_epoch', 'loss', 'accuracy', 'learning_rate', 'train_time']
+    column_names = ['epoch', 'start_epoch', 'loss', 'accuracy', 'learning_rate', 'train_time', 'optimizer']
     epoch_losses = dict()
     for cat in ['train', 'val']:
         outfpn = df_fpns[cat]
@@ -149,7 +149,7 @@ def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epo
                 # https://stackoverflow.com/questions/61092523/what-is-running-loss-in-pytorch-and-how-is-it-calculated
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == labels.data)
-            if phase == 'train':
+            if phase == 'train' and scheduler:
                 scheduler.step()
 
             epoch_loss = running_loss / dataset_sizes[phase]
@@ -159,7 +159,7 @@ def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epo
                 phase, epoch_loss, epoch_acc))
 
             # store the training information
-            row = [epoch+start_epoch+1, start_epoch, epoch_loss, epoch_acc.item(), scheduler.get_lr(), time.time()-epoch_start_time]
+            row = [epoch+start_epoch+1, start_epoch, epoch_loss, epoch_acc.item(), optimizer.param_groups[0]['lr'], time.time()-epoch_start_time, 'SGD' if scheduler else 'ADAM']
             epoch_losses[phase].loc[len(epoch_losses[phase])] = row
 
             # deep copy the model

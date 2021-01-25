@@ -14,11 +14,15 @@ import argparse
 if __name__ == '__main__':
     # command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--load_weights', type=str, default='models/wrn16_8_stl_d8d4d1_epoch2.pt')
+    parser.add_argument('-l', '--load_weights', type=str, default='models/wrn16_8_stl_d8d4d1_lr1.0e-03_epoch2.pt')
     parser.add_argument('-n', '--nepochs', type=int, default=25)
+    parser.add_argument('-lr', '--learning_rate', type=float, default=1e-3)
+    parser.add_argument('--use_adam', action='store_true')
     args = parser.parse_args()
     pretrained_weights_fpn = args.load_weights
     nepochs = args.nepochs
+    learning_rate = args.learning_rate
+    use_adam = args.use_adam
 
     # get the remaining number of epochs
     pretrain_epochs = 0
@@ -54,15 +58,21 @@ if __name__ == '__main__':
         
     # if model is not trained, train it
     # otherwise, evaluate the model
-    model_fpn = 'models/wrn16_8_stl_d8d4d1_epoch{}.pt'.format(nepochs)
+    model_fpn = 'models/wrn16_8_stl_d8d4d1_lr{:1.1e}_{}_epoch{}.pt'.format(learning_rate, 'adam' if use_adam else 'sgd', nepochs)
     if not os.path.exists(model_fpn):
         loss_function = torch.nn.CrossEntropyLoss()
 
         # Observe that all parameters are being optimized
-        optimizer_ft = torch.optim.SGD(e2cnn_model1.parameters(), lr=0.001, momentum=0.9)
+        if not use_adam:
+            optimizer_ft = torch.optim.SGD(e2cnn_model1.parameters(), lr=learning_rate, momentum=0.9)
+        else:
+            optimizer_ft = torch.optim.Adam(e2cnn_model1.parameters(), lr=learning_rate)
 
         # Decay LR by a factor of 0.1 every 7 epochs
-        exp_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
+        if not use_adam:
+            exp_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
+        else:
+            exp_lr_scheduler = None
 
         # load pretrained weights if exist
         if os.path.exists(pretrained_weights_fpn):
@@ -72,7 +82,8 @@ if __name__ == '__main__':
         ### Train and evaluate
         ###
         e2cnn_model1 = train_model(e2cnn_model1, loss_function, optimizer_ft, exp_lr_scheduler, data_transforms,
-                                   num_epochs=remaining_epochs, start_epoch=pretrain_epochs)
+                                       num_epochs=remaining_epochs, start_epoch=pretrain_epochs)
+        
         # save the trained model
         easy_savemodel(e2cnn_model1, model_fpn)
     else:
@@ -80,5 +91,5 @@ if __name__ == '__main__':
         e2cnn_model1.eval()
 
     # show some plots with prediction
-    visualize_model(e2cnn_model1)
+    visualize_model(e2cnn_model1, data_transforms)
     easy_savefig(outfpn='plots/visualize_model.png')

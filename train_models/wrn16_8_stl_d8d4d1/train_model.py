@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 '''
 This script trains one of the best performing networks from the paper, wrn28 without reflection symmetry.
+Since this network is optimized for the STL dataset, images are resized to 96x96 from the original size 224x224.
 '''
 
 import os, sys
+
+from torchvision.transforms.transforms import Resize
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../..'))
 
 from torchvision import transforms
@@ -15,13 +18,17 @@ if __name__ == '__main__':
     # command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-l', '--load_weights', type=str, default='models/wrn16_8_stl_d8d4d1_lr1.0e-03_epoch2.pt')
-    parser.add_argument('-n', '--nepochs', type=int, default=25)
     parser.add_argument('-lr', '--learning_rate', type=float, default=1e-3)
+    parser.add_argument('-n', '--nepochs', type=int, default=25)
+    parser.add_argument('-r', '--resize_pixel', type=int, default=96)
+    parser.add_argument('-s', '--scheduler_step', type=int, default=50, help='Number of epochs for the scheduler to kick in. No effect with ADAM.')
     parser.add_argument('--use_adam', action='store_true')
     args = parser.parse_args()
     pretrained_weights_fpn = args.load_weights
     nepochs = args.nepochs
+    img_size = args.resize_pixel
     learning_rate = args.learning_rate
+    scheduler_step = args.scheduler_step
     use_adam = args.use_adam
 
     # get the remaining number of epochs
@@ -35,11 +42,13 @@ if __name__ == '__main__':
     # Data augmentation and normalization for training
     data_transforms = {
         'train': transforms.Compose([
+            transforms.Resize(img_size),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ]),
         'val': transforms.Compose([
+            transforms.Resize(img_size),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ]),
@@ -58,7 +67,7 @@ if __name__ == '__main__':
         
     # if model is not trained, train it
     # otherwise, evaluate the model
-    model_fpn = 'models/wrn16_8_stl_d8d4d1_lr{:1.1e}_{}_epoch{}.pt'.format(learning_rate, 'adam' if use_adam else 'sgd', nepochs)
+    model_fpn = 'models/{}x{}/wrn16_8_stl_d8d4d1_lr{:1.1e}_{}_epoch{}.pt'.format(img_size, img_size, learning_rate, 'adam' if use_adam else 'sgd', nepochs)
     if not os.path.exists(model_fpn):
         loss_function = torch.nn.CrossEntropyLoss()
 
@@ -70,7 +79,7 @@ if __name__ == '__main__':
 
         # Decay LR by a factor of 0.1 every 7 epochs
         if not use_adam:
-            exp_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
+            exp_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer_ft, step_size=scheduler_step, gamma=0.1)
         else:
             exp_lr_scheduler = None
 

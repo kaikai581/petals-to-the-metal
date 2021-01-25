@@ -15,6 +15,16 @@ import torchvision
 # redirect output
 matplotlib.use('Agg')
 
+def get_git_root(path):
+    '''
+    Get the root directory of this project.
+    '''
+    git_repo = git.Repo(path, search_parent_directories=True)
+    git_root = git_repo.git.rev_parse('--show-toplevel')
+    return git_root
+
+# file scope variables
+data_dir = os.path.join(get_git_root(__file__), 'data/imagefolder-jpeg-224x224')
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 def easy_savedataframe(dataframe, outfpn):
@@ -48,20 +58,19 @@ def easy_savemodel(model, outfpn):
         os.makedirs(outfp)
     torch.save(model.state_dict(), outfpn)
 
-def get_git_root(path):
-    '''
-    Get the root directory of this project.
-    '''
-    git_repo = git.Repo(path, search_parent_directories=True)
-    git_root = git_repo.git.rev_parse('--show-toplevel')
-    return git_root
+def get_image_size(data_transforms):
+    image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
+                                              data_transforms[x]) for x in ['train', 'val']}
+    dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_workers=4) for x in ['train', 'val']}
+    # Get a batch of training data
+    inputs, _ = next(iter(dataloaders['train']))
+    return inputs.cpu().data[0].size()[2]
 
 def get_nclasses(data_transforms):
     '''
     Return the number of classes given the PyTorch data transform.
     '''
     # get information from data_transforms
-    data_dir = os.path.join(get_git_root(__file__), 'data/imagefolder-jpeg-224x224')
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms[x])
                       for x in ['train', 'val']}
     class_names = image_datasets['train'].classes
@@ -90,8 +99,9 @@ def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epo
     best_acc = 0.0
 
     # containers for training information
-    df_fpns = {'train': 'epoch_info/train_epoch_info.csv', 'val': 'epoch_info/validation_epoch_info.csv'}
-    column_names = ['epoch', 'start_epoch', 'loss', 'accuracy', 'learning_rate', 'train_time', 'optimizer']
+    img_size = get_image_size(data_transforms)
+    df_fpns = {'train': 'epoch_info/{}x{}/train_epoch_info.csv'.format(img_size, img_size), 'val': 'epoch_info/{}x{}/validation_epoch_info.csv'.format(img_size, img_size)}
+    column_names = ['epoch', 'start_epoch', 'loss', 'accuracy', 'learning_rate', 'train_time', 'optimizer', 'scheduler_step_size']
     epoch_losses = dict()
     for cat in ['train', 'val']:
         outfpn = df_fpns[cat]
@@ -102,7 +112,6 @@ def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epo
         # epoch_losses[cat] = epoch_losses[cat].set_index(column_names[:2])
 
     # get information from data_transforms
-    data_dir = os.path.join(get_git_root(__file__), 'data/imagefolder-jpeg-224x224')
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms[x])
                       for x in ['train', 'val']}
     dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_workers=4)
@@ -159,7 +168,7 @@ def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epo
                 phase, epoch_loss, epoch_acc))
 
             # store the training information
-            row = [epoch+start_epoch+1, start_epoch, epoch_loss, epoch_acc.item(), optimizer.param_groups[0]['lr'], time.time()-epoch_start_time, 'SGD' if scheduler else 'ADAM']
+            row = [epoch+start_epoch+1, start_epoch, epoch_loss, epoch_acc.item(), optimizer.param_groups[0]['lr'], time.time()-epoch_start_time, 'SGD' if scheduler else 'ADAM', scheduler.step_size if scheduler else -1]
             epoch_losses[phase].loc[len(epoch_losses[phase])] = row
 
             # deep copy the model
@@ -187,7 +196,6 @@ def visualize_images(data_transforms):
     Visualize a few images.
     '''
     # get information from data_transforms
-    data_dir = os.path.join(get_git_root(__file__), 'data/imagefolder-jpeg-224x224')
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms[x])
                       for x in ['train', 'val']}
     dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_workers=4)
@@ -215,7 +223,6 @@ def visualize_model(model, data_transforms, num_images=6):
     plt.figure()
 
     # get information from data_transforms
-    data_dir = os.path.join(get_git_root(__file__), 'data/imagefolder-jpeg-224x224')
     image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms[x])
                       for x in ['train', 'val']}
     dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_workers=4)

@@ -91,6 +91,18 @@ def imshow(inp, title=None):
     # ref: https://stackoverflow.com/questions/13336823/matplotlib-python-error/13336944
     # plt.pause(0.001)  # pause a bit so that plots are updated
 
+def model_size_all(model):
+    '''
+    Print the number of all parameters of a model.
+    '''
+    return sum(p.numel() for p in model.parameters())
+
+def model_size_trainable(model):
+    '''
+    Print the number of trainable parameters of a model.
+    '''
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
 def train_model(model, criterion, optimizer, scheduler, data_transforms, num_epochs=25, start_epoch=0):
     '''A helper function to train a model.'''
     since = time.time()

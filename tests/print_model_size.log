@@ -1,0 +1,1075 @@
+| Wide-Resnet 16x8
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0,0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[16]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[16]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[16]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[16]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - restrict1
+	34 - restrict1.0
+	35 - restrict1.1
+	36 - layer2
+	37 - layer2.0
+	38 - layer2.0.bn1
+	39 - layer2.0.bn1.batch_norm_[16]
+	40 - layer2.0.relu1
+	41 - layer2.0.conv1
+	42 - layer2.0.conv1._basisexpansion
+	43 - layer2.0.conv1._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	44 - layer2.0.bn2
+	45 - layer2.0.bn2.batch_norm_[8]
+	46 - layer2.0.relu2
+	47 - layer2.0.dropout
+	48 - layer2.0.conv2
+	49 - layer2.0.conv2._basisexpansion
+	50 - layer2.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	51 - layer2.0.shortcut
+	52 - layer2.0.shortcut._basisexpansion
+	53 - layer2.0.shortcut._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	54 - layer2.1
+	55 - layer2.1.bn1
+	56 - layer2.1.bn1.batch_norm_[8]
+	57 - layer2.1.relu1
+	58 - layer2.1.conv1
+	59 - layer2.1.conv1._basisexpansion
+	60 - layer2.1.bn2
+	61 - layer2.1.bn2.batch_norm_[8]
+	62 - layer2.1.relu2
+	63 - layer2.1.dropout
+	64 - layer2.1.conv2
+	65 - layer2.1.conv2._basisexpansion
+	66 - restrict2
+	67 - restrict2.0
+	68 - restrict2.1
+	69 - layer3
+	70 - layer3.0
+	71 - layer3.0.bn1
+	72 - layer3.0.bn1.batch_norm_[8]
+	73 - layer3.0.relu1
+	74 - layer3.0.conv1
+	75 - layer3.0.conv1._basisexpansion
+	76 - layer3.0.conv1._basisexpansion.block_expansion_('D4:regular_0', 'regular')
+	77 - layer3.0.bn2
+	78 - layer3.0.bn2.batch_norm_[2]
+	79 - layer3.0.relu2
+	80 - layer3.0.dropout
+	81 - layer3.0.conv2
+	82 - layer3.0.conv2._basisexpansion
+	83 - layer3.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	84 - layer3.0.shortcut
+	85 - layer3.0.shortcut._basisexpansion
+	86 - layer3.0.shortcut._basisexpansion.block_expansion_('D4:regular_0', 'regular')
+	87 - layer3.1
+	88 - layer3.1.bn1
+	89 - layer3.1.bn1.batch_norm_[2]
+	90 - layer3.1.relu1
+	91 - layer3.1.conv1
+	92 - layer3.1.conv1._basisexpansion
+	93 - layer3.1.bn2
+	94 - layer3.1.bn2.batch_norm_[2]
+	95 - layer3.1.relu2
+	96 - layer3.1.dropout
+	97 - layer3.1.conv2
+	98 - layer3.1.conv2._basisexpansion
+	99 - layer3.1.conv2._basisexpansion.block_expansion_('regular', 'irrep_0')
+	100 - layer3.1.shortcut
+	101 - layer3.1.shortcut._basisexpansion
+	102 - layer3.1.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0')
+	103 - bn
+	104 - bn.batch_norm_[1]
+	105 - relu
+	106 - linear
+| Wide-Resnet 16x8
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0,0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[16]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[16]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[16]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[16]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - restrict1
+	34 - restrict1.0
+	35 - restrict1.1
+	36 - layer2
+	37 - layer2.0
+	38 - layer2.0.bn1
+	39 - layer2.0.bn1.batch_norm_[16]
+	40 - layer2.0.relu1
+	41 - layer2.0.conv1
+	42 - layer2.0.conv1._basisexpansion
+	43 - layer2.0.conv1._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	44 - layer2.0.bn2
+	45 - layer2.0.bn2.batch_norm_[8]
+	46 - layer2.0.relu2
+	47 - layer2.0.dropout
+	48 - layer2.0.conv2
+	49 - layer2.0.conv2._basisexpansion
+	50 - layer2.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	51 - layer2.0.shortcut
+	52 - layer2.0.shortcut._basisexpansion
+	53 - layer2.0.shortcut._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	54 - layer2.1
+	55 - layer2.1.bn1
+	56 - layer2.1.bn1.batch_norm_[8]
+	57 - layer2.1.relu1
+	58 - layer2.1.conv1
+	59 - layer2.1.conv1._basisexpansion
+	60 - layer2.1.bn2
+	61 - layer2.1.bn2.batch_norm_[8]
+	62 - layer2.1.relu2
+	63 - layer2.1.dropout
+	64 - layer2.1.conv2
+	65 - layer2.1.conv2._basisexpansion
+	66 - layer3
+	67 - layer3.0
+	68 - layer3.0.bn1
+	69 - layer3.0.bn1.batch_norm_[8]
+	70 - layer3.0.relu1
+	71 - layer3.0.conv1
+	72 - layer3.0.conv1._basisexpansion
+	73 - layer3.0.bn2
+	74 - layer3.0.bn2.batch_norm_[8]
+	75 - layer3.0.relu2
+	76 - layer3.0.dropout
+	77 - layer3.0.conv2
+	78 - layer3.0.conv2._basisexpansion
+	79 - layer3.0.shortcut
+	80 - layer3.0.shortcut._basisexpansion
+	81 - layer3.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	82 - layer3.1
+	83 - layer3.1.bn1
+	84 - layer3.1.bn1.batch_norm_[8]
+	85 - layer3.1.relu1
+	86 - layer3.1.conv1
+	87 - layer3.1.conv1._basisexpansion
+	88 - layer3.1.bn2
+	89 - layer3.1.bn2.batch_norm_[8]
+	90 - layer3.1.relu2
+	91 - layer3.1.dropout
+	92 - layer3.1.conv2
+	93 - layer3.1.conv2._basisexpansion
+	94 - layer3.1.conv2._basisexpansion.block_expansion_('regular', 'irrep_0,0')
+	95 - layer3.1.shortcut
+	96 - layer3.1.shortcut._basisexpansion
+	97 - layer3.1.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0,0')
+	98 - bn
+	99 - bn.batch_norm_[1]
+	100 - relu
+	101 - linear
+| Wide-Resnet 16x8
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[2]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[2]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[2]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[2]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - layer2
+	34 - layer2.0
+	35 - layer2.0.bn1
+	36 - layer2.0.bn1.batch_norm_[2]
+	37 - layer2.0.relu1
+	38 - layer2.0.conv1
+	39 - layer2.0.conv1._basisexpansion
+	40 - layer2.0.bn2
+	41 - layer2.0.bn2.batch_norm_[2]
+	42 - layer2.0.relu2
+	43 - layer2.0.dropout
+	44 - layer2.0.conv2
+	45 - layer2.0.conv2._basisexpansion
+	46 - layer2.0.shortcut
+	47 - layer2.0.shortcut._basisexpansion
+	48 - layer2.1
+	49 - layer2.1.bn1
+	50 - layer2.1.bn1.batch_norm_[2]
+	51 - layer2.1.relu1
+	52 - layer2.1.conv1
+	53 - layer2.1.conv1._basisexpansion
+	54 - layer2.1.bn2
+	55 - layer2.1.bn2.batch_norm_[2]
+	56 - layer2.1.relu2
+	57 - layer2.1.dropout
+	58 - layer2.1.conv2
+	59 - layer2.1.conv2._basisexpansion
+	60 - layer3
+	61 - layer3.0
+	62 - layer3.0.bn1
+	63 - layer3.0.bn1.batch_norm_[2]
+	64 - layer3.0.relu1
+	65 - layer3.0.conv1
+	66 - layer3.0.conv1._basisexpansion
+	67 - layer3.0.bn2
+	68 - layer3.0.bn2.batch_norm_[2]
+	69 - layer3.0.relu2
+	70 - layer3.0.dropout
+	71 - layer3.0.conv2
+	72 - layer3.0.conv2._basisexpansion
+	73 - layer3.0.shortcut
+	74 - layer3.0.shortcut._basisexpansion
+	75 - layer3.1
+	76 - layer3.1.bn1
+	77 - layer3.1.bn1.batch_norm_[2]
+	78 - layer3.1.relu1
+	79 - layer3.1.conv1
+	80 - layer3.1.conv1._basisexpansion
+	81 - layer3.1.bn2
+	82 - layer3.1.bn2.batch_norm_[2]
+	83 - layer3.1.relu2
+	84 - layer3.1.dropout
+	85 - layer3.1.conv2
+	86 - layer3.1.conv2._basisexpansion
+	87 - layer3.1.conv2._basisexpansion.block_expansion_('regular', 'irrep_0')
+	88 - layer3.1.shortcut
+	89 - layer3.1.shortcut._basisexpansion
+	90 - layer3.1.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0')
+	91 - bn
+	92 - bn.batch_norm_[1]
+	93 - relu
+	94 - linear
+| Wide-Resnet 28x10
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0,0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[16]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[16]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[16]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[16]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - layer1.2
+	34 - layer1.2.bn1
+	35 - layer1.2.bn1.batch_norm_[16]
+	36 - layer1.2.relu1
+	37 - layer1.2.conv1
+	38 - layer1.2.conv1._basisexpansion
+	39 - layer1.2.bn2
+	40 - layer1.2.bn2.batch_norm_[16]
+	41 - layer1.2.relu2
+	42 - layer1.2.dropout
+	43 - layer1.2.conv2
+	44 - layer1.2.conv2._basisexpansion
+	45 - layer1.3
+	46 - layer1.3.bn1
+	47 - layer1.3.bn1.batch_norm_[16]
+	48 - layer1.3.relu1
+	49 - layer1.3.conv1
+	50 - layer1.3.conv1._basisexpansion
+	51 - layer1.3.bn2
+	52 - layer1.3.bn2.batch_norm_[16]
+	53 - layer1.3.relu2
+	54 - layer1.3.dropout
+	55 - layer1.3.conv2
+	56 - layer1.3.conv2._basisexpansion
+	57 - restrict1
+	58 - restrict1.0
+	59 - restrict1.1
+	60 - layer2
+	61 - layer2.0
+	62 - layer2.0.bn1
+	63 - layer2.0.bn1.batch_norm_[16]
+	64 - layer2.0.relu1
+	65 - layer2.0.conv1
+	66 - layer2.0.conv1._basisexpansion
+	67 - layer2.0.conv1._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	68 - layer2.0.bn2
+	69 - layer2.0.bn2.batch_norm_[8]
+	70 - layer2.0.relu2
+	71 - layer2.0.dropout
+	72 - layer2.0.conv2
+	73 - layer2.0.conv2._basisexpansion
+	74 - layer2.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	75 - layer2.0.shortcut
+	76 - layer2.0.shortcut._basisexpansion
+	77 - layer2.0.shortcut._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	78 - layer2.1
+	79 - layer2.1.bn1
+	80 - layer2.1.bn1.batch_norm_[8]
+	81 - layer2.1.relu1
+	82 - layer2.1.conv1
+	83 - layer2.1.conv1._basisexpansion
+	84 - layer2.1.bn2
+	85 - layer2.1.bn2.batch_norm_[8]
+	86 - layer2.1.relu2
+	87 - layer2.1.dropout
+	88 - layer2.1.conv2
+	89 - layer2.1.conv2._basisexpansion
+	90 - layer2.2
+	91 - layer2.2.bn1
+	92 - layer2.2.bn1.batch_norm_[8]
+	93 - layer2.2.relu1
+	94 - layer2.2.conv1
+	95 - layer2.2.conv1._basisexpansion
+	96 - layer2.2.bn2
+	97 - layer2.2.bn2.batch_norm_[8]
+	98 - layer2.2.relu2
+	99 - layer2.2.dropout
+	100 - layer2.2.conv2
+	101 - layer2.2.conv2._basisexpansion
+	102 - layer2.3
+	103 - layer2.3.bn1
+	104 - layer2.3.bn1.batch_norm_[8]
+	105 - layer2.3.relu1
+	106 - layer2.3.conv1
+	107 - layer2.3.conv1._basisexpansion
+	108 - layer2.3.bn2
+	109 - layer2.3.bn2.batch_norm_[8]
+	110 - layer2.3.relu2
+	111 - layer2.3.dropout
+	112 - layer2.3.conv2
+	113 - layer2.3.conv2._basisexpansion
+	114 - restrict2
+	115 - restrict2.0
+	116 - restrict2.1
+	117 - layer3
+	118 - layer3.0
+	119 - layer3.0.bn1
+	120 - layer3.0.bn1.batch_norm_[8]
+	121 - layer3.0.relu1
+	122 - layer3.0.conv1
+	123 - layer3.0.conv1._basisexpansion
+	124 - layer3.0.conv1._basisexpansion.block_expansion_('D4:regular_0', 'regular')
+	125 - layer3.0.bn2
+	126 - layer3.0.bn2.batch_norm_[2]
+	127 - layer3.0.relu2
+	128 - layer3.0.dropout
+	129 - layer3.0.conv2
+	130 - layer3.0.conv2._basisexpansion
+	131 - layer3.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	132 - layer3.0.shortcut
+	133 - layer3.0.shortcut._basisexpansion
+	134 - layer3.0.shortcut._basisexpansion.block_expansion_('D4:regular_0', 'regular')
+	135 - layer3.1
+	136 - layer3.1.bn1
+	137 - layer3.1.bn1.batch_norm_[2]
+	138 - layer3.1.relu1
+	139 - layer3.1.conv1
+	140 - layer3.1.conv1._basisexpansion
+	141 - layer3.1.bn2
+	142 - layer3.1.bn2.batch_norm_[2]
+	143 - layer3.1.relu2
+	144 - layer3.1.dropout
+	145 - layer3.1.conv2
+	146 - layer3.1.conv2._basisexpansion
+	147 - layer3.2
+	148 - layer3.2.bn1
+	149 - layer3.2.bn1.batch_norm_[2]
+	150 - layer3.2.relu1
+	151 - layer3.2.conv1
+	152 - layer3.2.conv1._basisexpansion
+	153 - layer3.2.bn2
+	154 - layer3.2.bn2.batch_norm_[2]
+	155 - layer3.2.relu2
+	156 - layer3.2.dropout
+	157 - layer3.2.conv2
+	158 - layer3.2.conv2._basisexpansion
+	159 - layer3.3
+	160 - layer3.3.bn1
+	161 - layer3.3.bn1.batch_norm_[2]
+	162 - layer3.3.relu1
+	163 - layer3.3.conv1
+	164 - layer3.3.conv1._basisexpansion
+	165 - layer3.3.bn2
+	166 - layer3.3.bn2.batch_norm_[2]
+	167 - layer3.3.relu2
+	168 - layer3.3.dropout
+	169 - layer3.3.conv2
+	170 - layer3.3.conv2._basisexpansion
+	171 - layer3.3.conv2._basisexpansion.block_expansion_('regular', 'irrep_0')
+	172 - layer3.3.shortcut
+	173 - layer3.3.shortcut._basisexpansion
+	174 - layer3.3.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0')
+	175 - bn
+	176 - bn.batch_norm_[1]
+	177 - relu
+	178 - linear
+| Wide-Resnet 28x7
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0,0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[16]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[16]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[16]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[16]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - layer1.2
+	34 - layer1.2.bn1
+	35 - layer1.2.bn1.batch_norm_[16]
+	36 - layer1.2.relu1
+	37 - layer1.2.conv1
+	38 - layer1.2.conv1._basisexpansion
+	39 - layer1.2.bn2
+	40 - layer1.2.bn2.batch_norm_[16]
+	41 - layer1.2.relu2
+	42 - layer1.2.dropout
+	43 - layer1.2.conv2
+	44 - layer1.2.conv2._basisexpansion
+	45 - layer1.3
+	46 - layer1.3.bn1
+	47 - layer1.3.bn1.batch_norm_[16]
+	48 - layer1.3.relu1
+	49 - layer1.3.conv1
+	50 - layer1.3.conv1._basisexpansion
+	51 - layer1.3.bn2
+	52 - layer1.3.bn2.batch_norm_[16]
+	53 - layer1.3.relu2
+	54 - layer1.3.dropout
+	55 - layer1.3.conv2
+	56 - layer1.3.conv2._basisexpansion
+	57 - restrict1
+	58 - restrict1.0
+	59 - restrict1.1
+	60 - layer2
+	61 - layer2.0
+	62 - layer2.0.bn1
+	63 - layer2.0.bn1.batch_norm_[16]
+	64 - layer2.0.relu1
+	65 - layer2.0.conv1
+	66 - layer2.0.conv1._basisexpansion
+	67 - layer2.0.conv1._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	68 - layer2.0.bn2
+	69 - layer2.0.bn2.batch_norm_[8]
+	70 - layer2.0.relu2
+	71 - layer2.0.dropout
+	72 - layer2.0.conv2
+	73 - layer2.0.conv2._basisexpansion
+	74 - layer2.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	75 - layer2.0.shortcut
+	76 - layer2.0.shortcut._basisexpansion
+	77 - layer2.0.shortcut._basisexpansion.block_expansion_('D8:regular_0', 'regular')
+	78 - layer2.1
+	79 - layer2.1.bn1
+	80 - layer2.1.bn1.batch_norm_[8]
+	81 - layer2.1.relu1
+	82 - layer2.1.conv1
+	83 - layer2.1.conv1._basisexpansion
+	84 - layer2.1.bn2
+	85 - layer2.1.bn2.batch_norm_[8]
+	86 - layer2.1.relu2
+	87 - layer2.1.dropout
+	88 - layer2.1.conv2
+	89 - layer2.1.conv2._basisexpansion
+	90 - layer2.2
+	91 - layer2.2.bn1
+	92 - layer2.2.bn1.batch_norm_[8]
+	93 - layer2.2.relu1
+	94 - layer2.2.conv1
+	95 - layer2.2.conv1._basisexpansion
+	96 - layer2.2.bn2
+	97 - layer2.2.bn2.batch_norm_[8]
+	98 - layer2.2.relu2
+	99 - layer2.2.dropout
+	100 - layer2.2.conv2
+	101 - layer2.2.conv2._basisexpansion
+	102 - layer2.3
+	103 - layer2.3.bn1
+	104 - layer2.3.bn1.batch_norm_[8]
+	105 - layer2.3.relu1
+	106 - layer2.3.conv1
+	107 - layer2.3.conv1._basisexpansion
+	108 - layer2.3.bn2
+	109 - layer2.3.bn2.batch_norm_[8]
+	110 - layer2.3.relu2
+	111 - layer2.3.dropout
+	112 - layer2.3.conv2
+	113 - layer2.3.conv2._basisexpansion
+	114 - restrict2
+	115 - restrict2.0
+	116 - restrict2.1
+	117 - layer3
+	118 - layer3.0
+	119 - layer3.0.bn1
+	120 - layer3.0.bn1.batch_norm_[8]
+	121 - layer3.0.relu1
+	122 - layer3.0.conv1
+	123 - layer3.0.conv1._basisexpansion
+	124 - layer3.0.conv1._basisexpansion.block_expansion_('D4:regular_0', 'regular')
+	125 - layer3.0.bn2
+	126 - layer3.0.bn2.batch_norm_[2]
+	127 - layer3.0.relu2
+	128 - layer3.0.dropout
+	129 - layer3.0.conv2
+	130 - layer3.0.conv2._basisexpansion
+	131 - layer3.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	132 - layer3.0.shortcut
+	133 - layer3.0.shortcut._basisexpansion
+	134 - layer3.0.shortcut._basisexpansion.block_expansion_('D4:regular_0', 'regular')
+	135 - layer3.1
+	136 - layer3.1.bn1
+	137 - layer3.1.bn1.batch_norm_[2]
+	138 - layer3.1.relu1
+	139 - layer3.1.conv1
+	140 - layer3.1.conv1._basisexpansion
+	141 - layer3.1.bn2
+	142 - layer3.1.bn2.batch_norm_[2]
+	143 - layer3.1.relu2
+	144 - layer3.1.dropout
+	145 - layer3.1.conv2
+	146 - layer3.1.conv2._basisexpansion
+	147 - layer3.2
+	148 - layer3.2.bn1
+	149 - layer3.2.bn1.batch_norm_[2]
+	150 - layer3.2.relu1
+	151 - layer3.2.conv1
+	152 - layer3.2.conv1._basisexpansion
+	153 - layer3.2.bn2
+	154 - layer3.2.bn2.batch_norm_[2]
+	155 - layer3.2.relu2
+	156 - layer3.2.dropout
+	157 - layer3.2.conv2
+	158 - layer3.2.conv2._basisexpansion
+	159 - layer3.3
+	160 - layer3.3.bn1
+	161 - layer3.3.bn1.batch_norm_[2]
+	162 - layer3.3.relu1
+	163 - layer3.3.conv1
+	164 - layer3.3.conv1._basisexpansion
+	165 - layer3.3.bn2
+	166 - layer3.3.bn2.batch_norm_[2]
+	167 - layer3.3.relu2
+	168 - layer3.3.dropout
+	169 - layer3.3.conv2
+	170 - layer3.3.conv2._basisexpansion
+	171 - layer3.3.conv2._basisexpansion.block_expansion_('regular', 'irrep_0')
+	172 - layer3.3.shortcut
+	173 - layer3.3.shortcut._basisexpansion
+	174 - layer3.3.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0')
+	175 - bn
+	176 - bn.batch_norm_[1]
+	177 - relu
+	178 - linear
+| Wide-Resnet 28x10
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[8]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[8]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[8]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[8]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - layer1.2
+	34 - layer1.2.bn1
+	35 - layer1.2.bn1.batch_norm_[8]
+	36 - layer1.2.relu1
+	37 - layer1.2.conv1
+	38 - layer1.2.conv1._basisexpansion
+	39 - layer1.2.bn2
+	40 - layer1.2.bn2.batch_norm_[8]
+	41 - layer1.2.relu2
+	42 - layer1.2.dropout
+	43 - layer1.2.conv2
+	44 - layer1.2.conv2._basisexpansion
+	45 - layer1.3
+	46 - layer1.3.bn1
+	47 - layer1.3.bn1.batch_norm_[8]
+	48 - layer1.3.relu1
+	49 - layer1.3.conv1
+	50 - layer1.3.conv1._basisexpansion
+	51 - layer1.3.bn2
+	52 - layer1.3.bn2.batch_norm_[8]
+	53 - layer1.3.relu2
+	54 - layer1.3.dropout
+	55 - layer1.3.conv2
+	56 - layer1.3.conv2._basisexpansion
+	57 - restrict1
+	58 - restrict1.0
+	59 - restrict1.1
+	60 - layer2
+	61 - layer2.0
+	62 - layer2.0.bn1
+	63 - layer2.0.bn1.batch_norm_[8]
+	64 - layer2.0.relu1
+	65 - layer2.0.conv1
+	66 - layer2.0.conv1._basisexpansion
+	67 - layer2.0.conv1._basisexpansion.block_expansion_('C8:regular_0', 'regular')
+	68 - layer2.0.bn2
+	69 - layer2.0.bn2.batch_norm_[4]
+	70 - layer2.0.relu2
+	71 - layer2.0.dropout
+	72 - layer2.0.conv2
+	73 - layer2.0.conv2._basisexpansion
+	74 - layer2.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	75 - layer2.0.shortcut
+	76 - layer2.0.shortcut._basisexpansion
+	77 - layer2.0.shortcut._basisexpansion.block_expansion_('C8:regular_0', 'regular')
+	78 - layer2.1
+	79 - layer2.1.bn1
+	80 - layer2.1.bn1.batch_norm_[4]
+	81 - layer2.1.relu1
+	82 - layer2.1.conv1
+	83 - layer2.1.conv1._basisexpansion
+	84 - layer2.1.bn2
+	85 - layer2.1.bn2.batch_norm_[4]
+	86 - layer2.1.relu2
+	87 - layer2.1.dropout
+	88 - layer2.1.conv2
+	89 - layer2.1.conv2._basisexpansion
+	90 - layer2.2
+	91 - layer2.2.bn1
+	92 - layer2.2.bn1.batch_norm_[4]
+	93 - layer2.2.relu1
+	94 - layer2.2.conv1
+	95 - layer2.2.conv1._basisexpansion
+	96 - layer2.2.bn2
+	97 - layer2.2.bn2.batch_norm_[4]
+	98 - layer2.2.relu2
+	99 - layer2.2.dropout
+	100 - layer2.2.conv2
+	101 - layer2.2.conv2._basisexpansion
+	102 - layer2.3
+	103 - layer2.3.bn1
+	104 - layer2.3.bn1.batch_norm_[4]
+	105 - layer2.3.relu1
+	106 - layer2.3.conv1
+	107 - layer2.3.conv1._basisexpansion
+	108 - layer2.3.bn2
+	109 - layer2.3.bn2.batch_norm_[4]
+	110 - layer2.3.relu2
+	111 - layer2.3.dropout
+	112 - layer2.3.conv2
+	113 - layer2.3.conv2._basisexpansion
+	114 - restrict2
+	115 - restrict2.0
+	116 - restrict2.1
+	117 - layer3
+	118 - layer3.0
+	119 - layer3.0.bn1
+	120 - layer3.0.bn1.batch_norm_[4]
+	121 - layer3.0.relu1
+	122 - layer3.0.conv1
+	123 - layer3.0.conv1._basisexpansion
+	124 - layer3.0.conv1._basisexpansion.block_expansion_('C4:regular_0', 'regular')
+	125 - layer3.0.bn2
+	126 - layer3.0.bn2.batch_norm_[1]
+	127 - layer3.0.relu2
+	128 - layer3.0.dropout
+	129 - layer3.0.conv2
+	130 - layer3.0.conv2._basisexpansion
+	131 - layer3.0.conv2._basisexpansion.block_expansion_('regular', 'regular')
+	132 - layer3.0.shortcut
+	133 - layer3.0.shortcut._basisexpansion
+	134 - layer3.0.shortcut._basisexpansion.block_expansion_('C4:regular_0', 'regular')
+	135 - layer3.1
+	136 - layer3.1.bn1
+	137 - layer3.1.bn1.batch_norm_[1]
+	138 - layer3.1.relu1
+	139 - layer3.1.conv1
+	140 - layer3.1.conv1._basisexpansion
+	141 - layer3.1.bn2
+	142 - layer3.1.bn2.batch_norm_[1]
+	143 - layer3.1.relu2
+	144 - layer3.1.dropout
+	145 - layer3.1.conv2
+	146 - layer3.1.conv2._basisexpansion
+	147 - layer3.2
+	148 - layer3.2.bn1
+	149 - layer3.2.bn1.batch_norm_[1]
+	150 - layer3.2.relu1
+	151 - layer3.2.conv1
+	152 - layer3.2.conv1._basisexpansion
+	153 - layer3.2.bn2
+	154 - layer3.2.bn2.batch_norm_[1]
+	155 - layer3.2.relu2
+	156 - layer3.2.dropout
+	157 - layer3.2.conv2
+	158 - layer3.2.conv2._basisexpansion
+	159 - layer3.3
+	160 - layer3.3.bn1
+	161 - layer3.3.bn1.batch_norm_[1]
+	162 - layer3.3.relu1
+	163 - layer3.3.conv1
+	164 - layer3.3.conv1._basisexpansion
+	165 - layer3.3.bn2
+	166 - layer3.3.bn2.batch_norm_[1]
+	167 - layer3.3.relu2
+	168 - layer3.3.dropout
+	169 - layer3.3.conv2
+	170 - layer3.3.conv2._basisexpansion
+	171 - layer3.3.conv2._basisexpansion.block_expansion_('regular', 'irrep_0')
+	172 - layer3.3.shortcut
+	173 - layer3.3.shortcut._basisexpansion
+	174 - layer3.3.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0')/home/shihkai/anaconda3/envs/pytorch-cpu/lib/python3.8/site-packages/e2cnn/nn/modules/r2_conv/basisexpansion_singleblock.py:61: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at  /opt/conda/conda-bld/pytorch_1595629434582/work/aten/src/ATen/native/IndexingUtils.h:20.)
+  sampled_basis = sampled_basis[mask, ...]
+
+	175 - bn
+	176 - bn.batch_norm_[1]
+	177 - relu
+	178 - linear
+| Wide-Resnet 28x10
+start building 1
+layer 1 built
+start building 2
+layer 2 built
+start building 3
+layer 3 built
+MODEL TOPOLOGY:
+	0 - 
+	1 - conv1
+	2 - conv1._basisexpansion
+	3 - conv1._basisexpansion.block_expansion_('irrep_0', 'regular')
+	4 - layer1
+	5 - layer1.0
+	6 - layer1.0.bn1
+	7 - layer1.0.bn1.batch_norm_[2]
+	8 - layer1.0.relu1
+	9 - layer1.0.conv1
+	10 - layer1.0.conv1._basisexpansion
+	11 - layer1.0.conv1._basisexpansion.block_expansion_('regular', 'regular')
+	12 - layer1.0.bn2
+	13 - layer1.0.bn2.batch_norm_[2]
+	14 - layer1.0.relu2
+	15 - layer1.0.dropout
+	16 - layer1.0.conv2
+	17 - layer1.0.conv2._basisexpansion
+	18 - layer1.0.shortcut
+	19 - layer1.0.shortcut._basisexpansion
+	20 - layer1.0.shortcut._basisexpansion.block_expansion_('regular', 'regular')
+	21 - layer1.1
+	22 - layer1.1.bn1
+	23 - layer1.1.bn1.batch_norm_[2]
+	24 - layer1.1.relu1
+	25 - layer1.1.conv1
+	26 - layer1.1.conv1._basisexpansion
+	27 - layer1.1.bn2
+	28 - layer1.1.bn2.batch_norm_[2]
+	29 - layer1.1.relu2
+	30 - layer1.1.dropout
+	31 - layer1.1.conv2
+	32 - layer1.1.conv2._basisexpansion
+	33 - layer1.2
+	34 - layer1.2.bn1
+	35 - layer1.2.bn1.batch_norm_[2]
+	36 - layer1.2.relu1
+	37 - layer1.2.conv1
+	38 - layer1.2.conv1._basisexpansion
+	39 - layer1.2.bn2
+	40 - layer1.2.bn2.batch_norm_[2]
+	41 - layer1.2.relu2
+	42 - layer1.2.dropout
+	43 - layer1.2.conv2
+	44 - layer1.2.conv2._basisexpansion
+	45 - layer1.3
+	46 - layer1.3.bn1
+	47 - layer1.3.bn1.batch_norm_[2]
+	48 - layer1.3.relu1
+	49 - layer1.3.conv1
+	50 - layer1.3.conv1._basisexpansion
+	51 - layer1.3.bn2
+	52 - layer1.3.bn2.batch_norm_[2]
+	53 - layer1.3.relu2
+	54 - layer1.3.dropout
+	55 - layer1.3.conv2
+	56 - layer1.3.conv2._basisexpansion
+	57 - layer2
+	58 - layer2.0
+	59 - layer2.0.bn1
+	60 - layer2.0.bn1.batch_norm_[2]
+	61 - layer2.0.relu1
+	62 - layer2.0.conv1
+	63 - layer2.0.conv1._basisexpansion
+	64 - layer2.0.bn2
+	65 - layer2.0.bn2.batch_norm_[2]
+	66 - layer2.0.relu2
+	67 - layer2.0.dropout
+	68 - layer2.0.conv2
+	69 - layer2.0.conv2._basisexpansion
+	70 - layer2.0.shortcut
+	71 - layer2.0.shortcut._basisexpansion
+	72 - layer2.1
+	73 - layer2.1.bn1
+	74 - layer2.1.bn1.batch_norm_[2]
+	75 - layer2.1.relu1
+	76 - layer2.1.conv1
+	77 - layer2.1.conv1._basisexpansion
+	78 - layer2.1.bn2
+	79 - layer2.1.bn2.batch_norm_[2]
+	80 - layer2.1.relu2
+	81 - layer2.1.dropout
+	82 - layer2.1.conv2
+	83 - layer2.1.conv2._basisexpansion
+	84 - layer2.2
+	85 - layer2.2.bn1
+	86 - layer2.2.bn1.batch_norm_[2]
+	87 - layer2.2.relu1
+	88 - layer2.2.conv1
+	89 - layer2.2.conv1._basisexpansion
+	90 - layer2.2.bn2
+	91 - layer2.2.bn2.batch_norm_[2]
+	92 - layer2.2.relu2
+	93 - layer2.2.dropout
+	94 - layer2.2.conv2
+	95 - layer2.2.conv2._basisexpansion
+	96 - layer2.3
+	97 - layer2.3.bn1
+	98 - layer2.3.bn1.batch_norm_[2]
+	99 - layer2.3.relu1
+	100 - layer2.3.conv1
+	101 - layer2.3.conv1._basisexpansion
+	102 - layer2.3.bn2
+	103 - layer2.3.bn2.batch_norm_[2]
+	104 - layer2.3.relu2
+	105 - layer2.3.dropout
+	106 - layer2.3.conv2
+	107 - layer2.3.conv2._basisexpansion
+	108 - layer3
+	109 - layer3.0
+	110 - layer3.0.bn1
+	111 - layer3.0.bn1.batch_norm_[2]
+	112 - layer3.0.relu1
+	113 - layer3.0.conv1
+	114 - layer3.0.conv1._basisexpansion
+	115 - layer3.0.bn2
+	116 - layer3.0.bn2.batch_norm_[2]
+	117 - layer3.0.relu2
+	118 - layer3.0.dropout
+	119 - layer3.0.conv2
+	120 - layer3.0.conv2._basisexpansion
+	121 - layer3.0.shortcut
+	122 - layer3.0.shortcut._basisexpansion
+	123 - layer3.1
+	124 - layer3.1.bn1
+	125 - layer3.1.bn1.batch_norm_[2]
+	126 - layer3.1.relu1
+	127 - layer3.1.conv1
+	128 - layer3.1.conv1._basisexpansion
+	129 - layer3.1.bn2
+	130 - layer3.1.bn2.batch_norm_[2]
+	131 - layer3.1.relu2
+	132 - layer3.1.dropout
+	133 - layer3.1.conv2
+	134 - layer3.1.conv2._basisexpansion
+	135 - layer3.2
+	136 - layer3.2.bn1
+	137 - layer3.2.bn1.batch_norm_[2]
+	138 - layer3.2.relu1
+	139 - layer3.2.conv1
+	140 - layer3.2.conv1._basisexpansion
+	141 - layer3.2.bn2
+	142 - layer3.2.bn2.batch_norm_[2]
+	143 - layer3.2.relu2
+	144 - layer3.2.dropout
+	145 - layer3.2.conv2
+	146 - layer3.2.conv2._basisexpansion
+	147 - layer3.3
+	148 - layer3.3.bn1
+	149 - layer3.3.bn1.batch_norm_[2]
+	150 - layer3.3.relu1
+	151 - layer3.3.conv1
+	152 - layer3.3.conv1._basisexpansion
+	153 - layer3.3.bn2
+	154 - layer3.3.bn2.batch_norm_[2]
+	155 - layer3.3.relu2
+	156 - layer3.3.dropout
+	157 - layer3.3.conv2
+	158 - layer3.3.conv2._basisexpansion
+	159 - layer3.3.conv2._basisexpansion.block_expansion_('regular', 'irrep_0')
+	160 - layer3.3.shortcut
+	161 - layer3.3.shortcut._basisexpansion
+	162 - layer3.3.shortcut._basisexpansion.block_expansion_('regular', 'irrep_0')
+	163 - bn
+	164 - bn.batch_norm_[1]
+	165 - relu
+	166 - linear
+           model_name trainable_parameters all_parameters
+0  wrn16_8_stl_d8d4d1             12025384       12025384
+1  wrn16_8_stl_d8d4d4             10928162       10928162
+2  wrn16_8_stl_d1d1d1             10085867       10085867
+3     wrn28_10_d8d4d1             37268178       37268178
+4      wrn28_7_d8d4d1             18255322       18255322
+5     wrn28_10_c8c4c1             37231021       37231021
+6     wrn28_10_d1d1d1             32874659       32874659
+7     wide_resnet50_2             68883240       68883240

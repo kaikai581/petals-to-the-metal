@@ -30,5 +30,47 @@ imagefolder-jpeg-224x224
 ```
 For convenience, the converted images can be downloaded from [here](https://www.kaggle.com/shihkailin/imagefolderjpeg224x224/download).
 
-## Install e2cnn in an Anaconda environment
-Anaconda has been my choice of python distribution for all projects.
+## Install e2cnn in an Anaconda environment with GPU acceleration
+[Anaconda](https://www.anaconda.com/) has been my choice of python distribution for all projects. Follow the [instruction](https://docs.anaconda.com/anaconda/install/) to install Anaconda on your system, and make sure that the `conda` command is available to your command line.
+
+To install e2cnn to your Anaconda environment, first create an environment.
+```
+$ conda create -n <env_name>
+$ conda activate <env_name>
+```
+Now, install PyTorch that is compatible to your GPU driver installed. To make sure the compatibility, use the `nvidia-smi` command. For example, on my system,
+```
+$ nvidia-smi
+Thu Mar  4 15:34:31 2021       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.87.00    Driver Version: 418.87.00    CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 108...  Off  | 00000000:65:00.0 Off |                  N/A |
+| 25%   27C    P8    11W / 250W |      0MiB / 11178MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
+In the top right corner, the CUDA Version listed is 10.1. Since CUDA toolkit is backward compatible, all PyTorch versions earlier than 10.1 would work. Therefore, I would install cudatoolkit 10.1 as an example. Look up the correct command on the [PyTorch front page](https://pytorch.org/).
+```
+$ conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch
+```
+Finally, it's time to install e2cnn into the current environment.
+```
+$ pip install e2cnn
+```
+
+## Models used in this study
+Since e2cnn is more like a mathematical framework, the author has provided several predefined variants for easy use. I have tried some of them, and found the variant, `wrn16_8_stl_d8d4d1`, to be very performant.
+
+A brief explanation on the model name. "wrn" is "wide ResNet", suggesting the network structure is modeled after this CNN architecture, 16 is the depth, 8 is the so-called "widen factor", "stl" means the model is built for the STL dataset, and d8d4d1 means that the model's blocks are respectively [D₈, D₄ and D₁](https://en.wikipedia.org/wiki/Dihedral_group) equivariant.
+
+Find [here](https://github.com/kaikai581/petals-to-the-metal/blob/master/train_models/wrn16_8_stl_d8d4d1_weight_decay/train_model.py) for the script I use to train the model. The trained weights used in this study can be downloaded [here](https://drive.google.com/file/d/1lwMc9DizSwmD0TEXbuqIY2xUBGCqIeVM/view?usp=sharing).

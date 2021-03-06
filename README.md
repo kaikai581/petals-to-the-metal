@@ -59,9 +59,9 @@ Thu Mar  4 15:34:31 2021
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
 ```
-In the top right corner, the CUDA Version listed is 10.1. Since CUDA toolkit is backward compatible, all PyTorch versions earlier than 10.1 would work. Therefore, I would install cudatoolkit 10.1 as an example. Look up the correct command on the [PyTorch front page](https://pytorch.org/).
+In the top right corner, the CUDA Version listed is 10.1. Since CUDA toolkit is backward compatible, <span style="color:green">all PyTorch versions earlier than 10.1 would work</span>. Therefore, I would install cudatoolkit 10.1 as an example. Look up the correct command on the [PyTorch front page](https://pytorch.org/).
 ```
-$ conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch
+$ conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 ```
 Finally, it's time to install e2cnn into the current environment.
 ```
@@ -74,3 +74,32 @@ Since e2cnn is more like a mathematical framework, the author has provided sever
 A brief explanation on the model name. "wrn" is "wide ResNet", suggesting the network structure is modeled after this CNN architecture, 16 is the depth, 8 is the so-called "widen factor", "stl" means the model is built for the STL dataset, and d8d4d1 means that the model's blocks are respectively [D₈, D₄ and D₁](https://en.wikipedia.org/wiki/Dihedral_group) equivariant.
 
 Find [here](https://github.com/kaikai581/petals-to-the-metal/blob/master/train_models/wrn16_8_stl_d8d4d1_weight_decay/train_model.py) for the script I use to train the model. The trained weights used in this study can be downloaded [here](https://drive.google.com/file/d/1lwMc9DizSwmD0TEXbuqIY2xUBGCqIeVM/view?usp=sharing).
+
+To get ideas about how the chosen model performs, a <span style="color:magenta">performance baseline</span> is required. Due to the architectural similarity and ready availability with `torchvision`, [wide_resnet50_2](https://pytorch.org/hub/pytorch_vision_wide_resnet/) seems to be a natural choice as the baseline performance measure. For a quick start, I employ PyTorch's [transfer learning](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html) to retrain only the fully connected layer to adapt to the number of flower classes in this dataset.
+
+Find [here](https://github.com/kaikai581/petals-to-the-metal/blob/master/train_models/wide-resnet/no-augmentation/transfer_learning.py) for the script I use to perform transfer learning. The baseline model weights used in this study can be downloaded [here](https://drive.google.com/file/d/1FQoz-n5GbcM2c00esyyDQqIuMrMFla3a/view?usp=sharing).
+
+### Data augmentation and preprocessing
+With both models, I have applied random horizontal flip and data standardization. I have left out random rotation on purpose in the hope of giving the e2cnn model an edge.
+
+For the baseline model, images of the original size, 224x224, are used. Meanwhile, for the e2cnn model, images are shrunk to <span style="color:red">96x96</span> to speed up the computing time. To be specific, the e2cnn training times are 63 minutes and 13.3 minutes per epoch with 224x224 and 96x96, respectively.
+
+## Learning curves
+Learning curves can not only show how the models learn but they are, in my opinion, beautiful to stare at.
+Here I am showing the learning curves for both models and trying to understand what happens to the learning processes.
+
+### Learning curve for the baseline model
+Here is the learning curve for the baseline model.
+<p align="center" width="100%">
+    <img src="analysis/plots/accuracy_lc_wrn_no_aug.png">
+</p>
+After 10 epochs, the train and validation accuracies don't change anymore. The performance converges extremely fast within 10 epochs. This indicates that training only the fully-connected layer for 104 classes is straightforward since all knowledge on low-level features is carried over from pre-training on ImageNet.
+
+### Learning cure for the e2cnn model
+Here is the learning curve for the baseline model.
+<p align="center" width="100%">
+    <img src="analysis/plots/accuracy_lc_wrn16_8_stl_d8d4d1_wd5e-4.png">
+</p>
+The model is trained from scratch, so the learning curve starts with accuracies close to zero. After 20 epochs, the accuracy increase starts to slow down dramatically. After 80 epochs, the accuracy gain per epoch is so small that I decide to stop at epoch 90.
+
+In contrast with a [zoo of learning curves](https://www.baeldung.com/cs/learning-curve-ml), the feature that both train and validation accuracies saturate and being constant with a large gap over epochs could mean that I am suffering from an unrepresentative training dataset.

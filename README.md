@@ -17,7 +17,7 @@ It is anecdotally interesting to note that Prof. Welling got his PhD degree unde
 
 ## Data used for this investigation
 The data used for this investigation comes from one of the Kaggle competitions called [Petals to the Metal - Flower Classification on TPU](https://www.kaggle.com/c/tpu-getting-started). This dataset is selected simply because the competition has no end date. Therefore, I can be sure that the dataset will be available for a long time. Besides, due to the radial symmetry of flowers, this might exhibit some interesting effects on the results.
-### Data preprocessing
+### Data format conversion
 The data is provided by Kaggle in the TFRecord format readily used by TensorFlow. However, since I am using PyTorch for this study, I have to convert the TFRecord files into the input data format PyTorch uses. To achieve this, I have written a simple script which can be found in [this repository](https://github.com/kaikai581/tfrecord-io-test).
 
 The original TFRecord files can be downloaded from [this link](https://storage.googleapis.com/kaggle-competitions-data/kaggle-v2/21154/1243559/bundle/archive.zip?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1614893308&Signature=Q%2FHtFG2qA6ITd1mFpWFnCFbJrpyKWCzcgqLpfGk3AK063ZgPNtbRbIe6yB6JG8g%2BN%2FDLQ%2BzgoTfg81%2BpZkXDHjNp7d41EuXwY1dMwnBNnPSBD26zJhbaV%2Fr%2FDCUiLHhBKM%2BhXZwi1cV35TJM1L4KmQi77gTCUBKV86nU6k%2B5AaqZ6eb5bQtk95dPORleoYUD3p4KPtE3gcG93ij2rTDWA8cCC%2B39jFgz4XLEoFy34%2FpCy9KIVnp1waDSCSULylIxnYki4OktGLEGsOueTxUR3ruaTKsnrS17T%2F1Au4pvm%2FUzctx1B6jIoHoyMl1sc37nHGsQq9R5%2FbpQkf9S%2BYDzTg%3D%3D&response-content-disposition=attachment%3B+filename%3Dtpu-getting-started.zip). After data conversion, one should see a directory tree structure like this.
@@ -93,6 +93,7 @@ Here is the learning curve for the baseline model.
 <p align="center" width="100%">
     <img src="analysis/plots/accuracy_lc_wrn_no_aug.png">
 </p>
+
 After 10 epochs, the train and validation accuracies don't change anymore. The performance converges extremely fast within 10 epochs. This indicates that training only the fully-connected layer for 104 classes is straightforward since all knowledge on low-level features is carried over from pre-training on ImageNet.
 
 ### Learning cure for the e2cnn model
@@ -100,6 +101,25 @@ Here is the learning curve for the baseline model.
 <p align="center" width="100%">
     <img src="analysis/plots/accuracy_lc_wrn16_8_stl_d8d4d1_wd5e-4.png">
 </p>
+
 The model is trained from scratch, so the learning curve starts with accuracies close to zero. After 20 epochs, the accuracy increase starts to slow down dramatically. After 80 epochs, the accuracy gain per epoch is so small that I decide to stop at epoch 90.
 
 In contrast with a [zoo of learning curves](https://www.baeldung.com/cs/learning-curve-ml), the feature that both train and validation accuracies saturate and being constant with a large gap over epochs could mean that I am suffering from an unrepresentative training dataset.
+
+## Performance comparison
+Inspired by confusion matrices, a "correctness matrix" can be constructed here, in which the four matrix elements mean "both models predict correctly", "only one of them is correct", and "both are wrong". The z-values indicate how many validation images belong to the respective matrix elements.
+
+Here is the correctness matrix for this investigation.
+<p align="center" width="100%">
+    <img src="analysis/plots/correctness_matrix.png">
+</p>
+
+From the matrix, 83.94% of the validation images are recognized correctly by both models, which I think is a very impressive result.
+
+As for the individual model performance, the reference model still has a slightly higher performance, as can be seen in the following figure.
+<p align="center" width="100%">
+    <img src="analysis/plots/model_accuracy_barchart.png">
+</p>
+
+### Potential reasons for worse accuracy
+There are at least two obvious reasons that potentially contribute to the worse accuracy seen with the e2cnn model.

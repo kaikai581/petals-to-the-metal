@@ -15,6 +15,8 @@ A large amount of papers have been published about the construction of a rotatio
 
 It is anecdotally interesting to note that Prof. Welling got his PhD degree under the instruction of Prof. Gerard 't Hooft, a renowned theoretical physicist who proved the renormalizability of gauge theories in his PhD work and received the Nobel Prize in Physics with it in 1999.
 
+The theory behind equavariance is profound. One of the major contributions of the authors' work is to derive and solve the so-called *kernel constraints* that all general steerable CNNs have to obey. For details in the theory, refer to the original paper. [[1]](#1)
+
 ## Data used for this investigation
 The data used for this investigation comes from one of the Kaggle competitions called [Petals to the Metal - Flower Classification on TPU](https://www.kaggle.com/c/tpu-getting-started). This dataset is selected simply because the competition has no end date. Therefore, I can be sure that the dataset will be available for a long time. Besides, due to the radial symmetry of flowers, this might exhibit some interesting effects on the results.
 ### Data format conversion
@@ -121,5 +123,79 @@ As for the individual model performance, the reference model still has a slightl
     <img src="analysis/plots/model_accuracy_barchart.png">
 </p>
 
+Let's take a look at some examples from each quadrant.
+
+### Examples from quadrant I
+Below is an example image whose class is predicted correctly by both models.
+<p align="center" width="100%">
+    <img src="analysis/plots/images/both_right/2186b445b.jpg">
+</p>
+
+Note that the image input to e2cnn looks blurrier due to downsampling from 224x224 to 96x96.
+
+### Examples from quadrant II
+Below is an example image whose class is predicted correctly only by the reference model.
+<p align="center" width="100%">
+    <img src="analysis/plots/images/only_wide_resnet_right/dd85280ac.jpg">
+</p>
+
+Some of the images are actually hard for humans as well.
+
+### Examples from quadrant III
+Here I am showing images whose class is predicted incorrectly by both models.
+Below is one with different predicted labels by the models.
+<p align="center" width="100%">
+    <img src="analysis/plots/images/both_wrong/different_prediction/20516989d.jpg">
+</p>
+
+Images in the top row are of the same class. Again, sometimes one finds that even humans cannot do a good job.
+
+More interestingly, there are images that both models predict the same wrong class. Here is one example.
+<p align="center" width="100%">
+    <img src="analysis/plots/images/both_wrong/same_prediction/7169a2306.jpg">
+</p>
+
+I don't blame the neural networks.
+
+### Examples from quadrant II
+Below is an example image whose class is predicted correctly only by the e2cnn model.
+<p align="center" width="100%">
+    <img src="analysis/plots/images/only_e2cnn_right/48d537254.jpg">
+</p>
+
 ### Potential reasons for worse accuracy
 There are at least two obvious reasons that potentially contribute to the worse accuracy seen with the e2cnn model.
+
+1. The pre-trained models provided by `torchvision` are trained on ImageNet, which contains more than ten million images. On the other hand, the test model is trained from scratch on only 12753 images.
+2. Since for the reference model, only the fully connected layer is retrained, full image resolution of 224x224 can be used without exceedingly long time to train. However, for the test model, since all weights are trained from scratch, plus certain computing overhead from steerable filters, 224x224 resolution takes unacceptably long time. As a result, each image is down sampled to 96x96, which might worsen the accuracy.
+
+### Potential means to improve accuracy
+Below are means that could potentially improve the test model performance but have not been tried out.
+
+1. It is doable to train the test model on ImageNet and retrain only the fully connected layer subsequently. If the lower accuracy is partly due to unrepresentative training data, this could help.
+2. It could be interesting to see if [super-convergence](https://arxiv.org/abs/1708.07120) works in this particular setting.
+
+### Model efficiency
+It's only when one examines the model size does one realize the potential power of equivariant networks.
+Here is the comparison of the number of model parameters.
+<p align="center" width="100%">
+    <img src="analysis/plots/model_size_barchart.png">
+</p>
+
+If both metrics, accuracy and model size, are plotted at the same time in a relative scale, e2cnn's strength in efficiency can be more clearly seen.
+<p align="center" width="100%">
+    <img src="analysis/plots/model_performance_barchart.png">
+</p>
+
+Here, e2cnn uses only 18% of model parameters to achieve accuracy merely 4% shy of that of a traditional CNN.
+
+## Summary
+Rotationally equavariant CNN endows CNN's mathematical framework with rotation symmetry. As this study shows, by restricting filters' accessible function space, model efficiency is greatly improved.
+
+There are still room to improve the accuracy obtained in this study. Another topic that could be of interest is to see whether e2cnn is more resistant to [adversarial rotations](https://arxiv.org/abs/1802.06627). These could all serve as the future studies.
+
+## References
+<a id="1">[1]</a>
+Weiler, Maurice and Cesa, Gabriele (2019).
+General E(2)-Equivariant Steerable CNNs.
+*Conference on Neural Information Processing Systems (NeurIPS)*.

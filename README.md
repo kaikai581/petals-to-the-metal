@@ -73,7 +73,7 @@ $ pip install e2cnn
 ## Models used in this study
 Since e2cnn is more like a mathematical framework, the author has provided several predefined variants for easy use. I have tried some of them, and found the variant, `wrn16_8_stl_d8d4d1`, to be very performant.
 
-A brief explanation on the model name. "wrn" is "wide ResNet", suggesting the network structure is modeled after this CNN architecture, 16 is the depth, 8 is the so-called "widen factor", "stl" means the model is built for the STL dataset, and d8d4d1 means that the model's blocks are respectively [D₈, D₄ and D₁](https://en.wikipedia.org/wiki/Dihedral_group) equivariant.
+A brief explanation on the model name. "wrn" is "wide ResNet", suggesting the network structure is modeled after this CNN architecture, 16 is the depth, 8 is the so-called "widen factor", "stl" means the model is built for the STL dataset, and d8d4d1 means that the model's blocks are respectively [D₈, D₄ and D₁](https://en.wikipedia.org/wiki/Dihedral_group) equivariant. Here, Dₙ is the dihedral group with n-fold rotation and reflection symmetries.
 
 Find [here](https://github.com/kaikai581/petals-to-the-metal/blob/master/train_models/wrn16_8_stl_d8d4d1_weight_decay/train_model.py) for the script I use to train the model. The trained weights used in this study can be downloaded [here](https://drive.google.com/file/d/1lwMc9DizSwmD0TEXbuqIY2xUBGCqIeVM/view?usp=sharing).
 
@@ -157,7 +157,7 @@ More interestingly, there are images that both models predict the same wrong cla
 
 I don't blame the neural networks.
 
-### Examples from quadrant II
+### Examples from quadrant IV
 Below is an example image whose class is predicted correctly only by the e2cnn model.
 <p align="center" width="100%">
     <img src="analysis/plots/images/only_e2cnn_right/48d537254.jpg">

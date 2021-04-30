@@ -98,7 +98,7 @@ Here is the learning curve for the baseline model.
 
 After 10 epochs, the train and validation accuracies don't change anymore. The performance converges extremely fast within 10 epochs. This indicates that training only the fully-connected layer for 104 classes is straightforward since all knowledge on low-level features is carried over from pre-training on ImageNet.
 
-### Learning cure for the e2cnn model
+### Learning curve for the e2cnn model
 Here is the learning curve for the baseline model.
 <p align="center" width="100%">
     <img src="analysis/plots/accuracy_lc_wrn16_8_stl_d8d4d1_wd5e-4.png">
